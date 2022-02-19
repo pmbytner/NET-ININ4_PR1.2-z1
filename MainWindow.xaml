@@ -23,12 +23,9 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Border
-            BorderThickness="2,2,2,2"
             Grid.Column="1"
             Grid.Row="1"
-            CornerRadius="5,5,5,5"
-            BorderBrush="#FFA01C1C"
-            Background="#FFF9DADA"
+            Style="{StaticResource CzerwonyZaokrąglony}"
             >
             <Label
                 HorizontalContentAlignment="Center"
@@ -40,7 +37,17 @@
         <TextBlock
             Grid.Column="1"
             Grid.Row="2"
-            TextWrapping="Wrap" Background="#FFE8F7F5"
+            >
+            Text Block Text Block Text Block Text Block Text Block Text Block Text Block Text Block Text Block
+        </TextBlock>
+        <TextBlock
+            Grid.Row="2"
+            >
+            Text Block Text Block Text Block Text Block Text Block Text Block Text Block Text Block Text Block
+        </TextBlock>
+        <TextBlock
+            Grid.Row="3"
+            Style="{StaticResource Specjalny}"
             >
             Text Block Text Block Text Block Text Block Text Block Text Block Text Block Text Block Text Block
         </TextBlock>
@@ -48,12 +55,16 @@
             Grid.Column="1"
             Grid.Row="3"
             Text="TextBox"
-            TextWrapping="Wrap"
             />
         <Button
+            Template="{DynamicResource SpecjalnyPrzycisk}"
             Grid.Column="1"
             Grid.Row="4"
-            Margin="10"
+            >
+            Przycisk specjalny
+        </Button>
+        <Button
+            Grid.Row="4"
             >
             Nasz przycisk
         </Button>

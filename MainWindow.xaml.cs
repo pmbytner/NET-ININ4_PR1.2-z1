@@ -24,5 +24,10 @@ namespace NET__ININ4_PR1._2_z1
         {
             InitializeComponent();
         }
+
+        private void RównaSię(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

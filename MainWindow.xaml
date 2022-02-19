@@ -7,10 +7,12 @@
     xmlns:local="clr-namespace:NET__ININ4_PR1._2_z1"
     mc:Ignorable="d"
     
-    Title="Okno Główne Aplikacji" Height="600" Width="500"
+    Title="Kalkulator" Height="600" Width="500"
     >
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -21,54 +23,126 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Border
+        <TextBlock
+            Grid.ColumnSpan="4"
+            TextAlignment="Right"
+            VerticalAlignment="Bottom"
+            >
+            Wyniki obliczeń
+        </TextBlock>
+        
+        <Button
+            Grid.Row="1"
+            >%</Button>
+        <Button
             Grid.Column="1"
             Grid.Row="1"
-            Style="{StaticResource CzerwonyZaokrąglony}"
-            >
-            <Label
-                HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center"
-                >
-                Jakiś tekst
-            </Label>
-        </Border>
-        <TextBlock
+            >CE</Button>
+        <Button
+            Grid.Column="2"
+            Grid.Row="1"
+            Template="{DynamicResource WażnyPrzycisk}"
+            >C</Button>
+        <Button
+            Grid.Column="3"
+            Grid.Row="1"
+            Template="{DynamicResource WażnyPrzycisk}"
+            >↶</Button>
+        
+        <Button
+            Grid.Row="2"
+            >1/x</Button>
+        <Button
             Grid.Column="1"
             Grid.Row="2"
-            >
-            Text Block Text Block Text Block Text Block Text Block Text Block Text Block Text Block Text Block
-        </TextBlock>
-        <TextBlock
+            >x²</Button>
+        <Button
+            Grid.Column="2"
             Grid.Row="2"
-            >
-            Text Block Text Block Text Block Text Block Text Block Text Block Text Block Text Block Text Block
-        </TextBlock>
-        <TextBlock
+            >√x</Button>
+        <Button
+            Grid.Column="3"
+            Grid.Row="2"
+            >÷</Button>
+        
+        <Button
             Grid.Row="3"
-            Style="{StaticResource Specjalny}"
-            >
-            Text Block Text Block Text Block Text Block Text Block Text Block Text Block Text Block Text Block
-        </TextBlock>
-        <TextBox
+            Style="{StaticResource PrzyciskCyfry}"
+            >7</Button>
+        <Button
             Grid.Column="1"
             Grid.Row="3"
-            Text="TextBox"
-            />
+            Style="{StaticResource PrzyciskCyfry}"
+            >8</Button>
         <Button
-            Template="{DynamicResource SpecjalnyPrzycisk}"
+            Grid.Column="2"
+            Grid.Row="3"
+            Style="{StaticResource PrzyciskCyfry}"
+            >9</Button>
+        <Button
+            Grid.Column="3"
+            Grid.Row="3"
+            >×</Button>
+        
+        <Button
+            Grid.Row="4"
+            Style="{StaticResource PrzyciskCyfry}"
+            >4</Button>
+        <Button
             Grid.Column="1"
             Grid.Row="4"
-            >
-            Przycisk specjalny
-        </Button>
+            Style="{StaticResource PrzyciskCyfry}"
+            >5</Button>
         <Button
+            Grid.Column="2"
             Grid.Row="4"
-            >
-            Nasz przycisk
-        </Button>
-
+            Style="{StaticResource PrzyciskCyfry}"
+            >6</Button>
+        <Button
+            Grid.Column="3"
+            Grid.Row="4"
+            >-</Button>
+        
+        <Button
+            Grid.Row="5"
+            Style="{StaticResource PrzyciskCyfry}"
+            >1</Button>
+        <Button
+            Grid.Column="1"
+            Grid.Row="5"
+            Style="{StaticResource PrzyciskCyfry}"
+            >2</Button>
+        <Button
+            Grid.Column="2"
+            Grid.Row="5"
+            Style="{StaticResource PrzyciskCyfry}"
+            >3</Button>
+        <Button
+            Grid.Column="3"
+            Grid.Row="5"
+            >+</Button>
+        
+        <Button
+            Grid.Row="6"
+            Style="{StaticResource PrzyciskCyfry}"
+            >+/-</Button>
+        <Button
+            Grid.Column="1"
+            Grid.Row="6"
+            Style="{StaticResource PrzyciskCyfry}"
+            >0</Button>
+        <Button
+            Grid.Column="2"
+            Grid.Row="6"
+            Style="{StaticResource PrzyciskCyfry}"
+            >,</Button>
+        <Button
+            Grid.Column="3"
+            Grid.Row="6"
+            Template="{DynamicResource WażnyPrzycisk}"
+            >=</Button>
 
     </Grid>
 </Window>

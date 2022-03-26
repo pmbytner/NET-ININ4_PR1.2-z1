@@ -44,5 +44,32 @@
             Grid.Column="1"
             Text="{Binding Path=Imię}"
             />
+        <Label Grid.Row="2">1time</Label>
+        <TextBox
+            Grid.Row="2"
+            Grid.Column="1"
+            Text="{Binding
+                Path=Imię,
+                Mode=OneTime
+            }"
+            />
+        <Label Grid.Row="3">1way</Label>
+        <TextBox
+            Grid.Row="3"
+            Grid.Column="1"
+            Text="{Binding
+                Path=Imię,
+                Mode=OneWay
+            }"
+            />
+        <Label Grid.Row="4">1way2src</Label>
+        <TextBox
+            Grid.Row="4"
+            Grid.Column="1"
+            Text="{Binding
+                Path=Imię,
+                Mode=OneWayToSource
+            }"
+            />
     </Grid>
 </Window>

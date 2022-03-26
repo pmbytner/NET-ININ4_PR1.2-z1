@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:NET__ININ4_PR1._2_z1"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <XmlDataProvider
+            x:Key="daneXML"
+            Source="DaneXML.xml"
+            XPath="Książki"
+            />
+
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="5"/>
             <Setter Property="TextWrapping" Value="Wrap"/>

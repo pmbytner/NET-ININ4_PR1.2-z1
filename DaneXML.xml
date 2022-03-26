@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Książki>
+  <Książka ISBN="37">
+    <Tytuł>Pan Tadeusz</Tytuł>
+    <Autor>Adam Mickiewicz</Autor>
+  </Książka>
+  <Książka ISBN="48">
+    <Tytuł>Balladyna</Tytuł>
+    <Autor>Juliusz Słowacki</Autor>
+  </Książka>
+  <Książka ISBN="59">
+    <Tytuł>Quo Vadis</Tytuł>
+    <Autor>Henryk Sienkiewicz</Autor>
+  </Książka>
+</Książki>

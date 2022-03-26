@@ -49,5 +49,20 @@
             Grid.ColumnSpan="4"
             Text="{Binding Path=Imię}"
             />
+        
+        <DataGrid
+            Grid.Row="3"
+            Grid.RowSpan="4"
+            Grid.ColumnSpan="4"
+            DataContext="{StaticResource daneXML}"
+            ItemsSource="{Binding XPath=*}"
+            >
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Tytuł"
+                    Binding="{Binding XPath=Tytuł}"
+                    />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

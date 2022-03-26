@@ -35,41 +35,19 @@
             }"
             />
         <Button
-            Grid.Row="1"
+            Grid.Column="2"
             >
-            OK->
+            OK
         </Button>
         <TextBlock
             Grid.Row="1"
-            Grid.Column="1"
-            Text="{Binding Path=Imię}"
+            Grid.ColumnSpan="4"
+            Text="{Binding Path=Format}"
             />
-        <Label Grid.Row="2">1time</Label>
-        <TextBox
+        <TextBlock
             Grid.Row="2"
-            Grid.Column="1"
-            Text="{Binding
-                Path=Imię,
-                Mode=OneTime
-            }"
-            />
-        <Label Grid.Row="3">1way</Label>
-        <TextBox
-            Grid.Row="3"
-            Grid.Column="1"
-            Text="{Binding
-                Path=Imię,
-                Mode=OneWay
-            }"
-            />
-        <Label Grid.Row="4">1way2src</Label>
-        <TextBox
-            Grid.Row="4"
-            Grid.Column="1"
-            Text="{Binding
-                Path=Imię,
-                Mode=OneWayToSource
-            }"
+            Grid.ColumnSpan="4"
+            Text="{Binding Path=Imię}"
             />
     </Grid>
 </Window>

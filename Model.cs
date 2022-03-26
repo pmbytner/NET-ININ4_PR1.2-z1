@@ -1,7 +1,29 @@
-﻿namespace NET__ININ4_PR1._2_z1
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
+namespace NET__ININ4_PR1._2_z1
 {
-    internal class Model
+    internal class Model : INotifyPropertyChanged
     {
-        public string Imię { get; set; } = "Nemo";
+        string imię = "Nemo";
+        public string Imię {
+            get { return imię; }
+            set
+            {
+                imię = value;
+                OnPropertyChanged();
+                OnPropertyChanged("Format");
+            }
+        }
+        public string Format
+        {
+            get { return $"Podane imię to " + Imię; }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
     }
 }

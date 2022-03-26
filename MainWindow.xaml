@@ -55,7 +55,7 @@
             Grid.RowSpan="4"
             Grid.ColumnSpan="4"
             DataContext="{StaticResource daneXML}"
-            ItemsSource="{Binding XPath=*}"
+            ItemsSource="{Binding XPath=Książka}"
             >
             <DataGrid.Columns>
                 <DataGridTextColumn

@@ -5,8 +5,8 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <XmlDataProvider
-            x:Key="daneXML"
             Source="DaneXML.xml"
+            x:Key="daneXML"
             XPath="Książki"
             />
 

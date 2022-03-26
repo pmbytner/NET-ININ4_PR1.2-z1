@@ -20,9 +20,11 @@ namespace NET__ININ4_PR1._2_z1
     /// </summary>
     public partial class MainWindow : Window
     {
+        Model model = new();
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = model;
         }
     }
 }

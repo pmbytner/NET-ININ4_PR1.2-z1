@@ -20,9 +20,49 @@ namespace NET__ININ4_PR1._2_z1
     /// </summary>
     public partial class MainWindow : Window
     {
+        Model model = new();
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = model;
+        }
+
+        private void Cyfra(object sender, RoutedEventArgs e)
+        {
+            model.DopiszCyfrę(
+                (string)((Button)sender).Content
+                );
+        }
+        private void Przecinek(object sender, RoutedEventArgs e)
+        {
+            model.PrzełączUłamek();
+        }
+
+        private void Znak(object sender, RoutedEventArgs e)
+        {
+            model.PrzełączZnak();
+        }
+
+        private void Cofnij(object sender, RoutedEventArgs e)
+        {
+            model.CofnijZnak();
+        }
+
+        private void Skasuj(object sender, RoutedEventArgs e)
+        {
+            model.Skasuj();
+        }
+
+        private void Resetuj(object sender, RoutedEventArgs e)
+        {
+            model.Resetuj();
+        }
+
+        private void ZwykłeDziałanie(object sender, RoutedEventArgs e)
+        {
+            model.ZwykłeDziałanie(
+                (string)((Button)sender).Content
+                );
         }
     }
 }

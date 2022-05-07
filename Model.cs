@@ -23,7 +23,10 @@ namespace NET__ININ4_PR1._2_z1
             ujemna = false,
             flagaWyniku = false
             ;
-        Stack<double> buforLiczb = new();
+        double?
+            buforWyniku = null,
+            buforDrugiejLiczby = null
+            ;
         string buforDziałania = null;
         public string Wynik {
             get { return wynik; }
@@ -101,39 +104,48 @@ namespace NET__ININ4_PR1._2_z1
         internal void Skasuj()
         {
             Wynik = "0";
-            ujemna = ułamek = przecinek = false;
+            ujemna = ułamek = przecinek = flagaWyniku = false;
         }
         internal void Resetuj()
         {
             Skasuj();
-            buforLiczb.Clear();
+            /*buforLiczb.Clear();*/
             buforDziałania = null;
+            buforWyniku = buforDrugiejLiczby = null;
         }
 
-        internal void ZwykłeDziałanie(string oznaczenie)
+        internal void NoweDziałanie(string oznaczenie)
         {
-            buforLiczb.Push(
-                Convert.ToDouble(Wynik)
-                );
-            Skasuj();
-            if (buforLiczb.Count == 1)
-                buforDziałania = oznaczenie;
+            ZwykłeDziałanie();
+            buforDziałania = oznaczenie;
+        }
+        internal void ZwykłeDziałanie()
+        {
+            if (buforWyniku == null)
+            {
+                buforWyniku = Convert.ToDouble(Wynik);
+                flagaWyniku = true;
+            }
             else
             {
-                double w = WykonajDziałanie(
-                    buforLiczb.Pop(),
-                    buforLiczb.Pop()
-                    );
-                buforLiczb.Push(w);
-                Wynik = w.ToString();
+                if (flagaWyniku == false)
+                {
+                    buforDrugiejLiczby = Convert.ToDouble(Wynik);
+                }
+                else if (buforDrugiejLiczby == null)
+                    return;
+                buforWyniku = WykonajDziałanie();
+                Wynik = buforWyniku.ToString();
                 flagaWyniku = true;
             }
         }
 
-        private double WykonajDziałanie(double v1, double v2)
+        private double WykonajDziałanie()
         {
             if (buforDziałania == "+")
-                return v1 + v2;
+                return (double)(buforWyniku + buforDrugiejLiczby);
+            else if (buforDziałania == "×")
+                return (double)(buforWyniku * buforDrugiejLiczby);
             else
                 return double.NaN;
         }

@@ -60,9 +60,14 @@ namespace NET__ININ4_PR1._2_z1
 
         private void ZwykłeDziałanie(object sender, RoutedEventArgs e)
         {
-            model.ZwykłeDziałanie(
+            model.NoweDziałanie(
                 (string)((Button)sender).Content
                 );
+        }
+
+        private void RównaSię(object sender, RoutedEventArgs e)
+        {
+            model.ZwykłeDziałanie();
         }
     }
 }

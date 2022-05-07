@@ -16,7 +16,7 @@ namespace NET__ININ4_PR1._2_z1
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        string wynik = "0";
+        string buforIO = "0";
         bool
             ułamek = false,
             przecinek = false,
@@ -28,22 +28,55 @@ namespace NET__ININ4_PR1._2_z1
             buforDrugiejLiczby = null
             ;
         string buforDziałania = null;
-        public string Wynik {
-            get { return wynik; }
+        public string BuforIO {
+            get { return buforIO; }
             set
             {
-                wynik = value;
+                buforIO = value;
                 OnPropetyChanged();
             }
+        }
+        public string BuforDziałania {
+            get { return buforDziałania; }
+            set
+            {
+                buforDziałania = value;
+                OnPropetyChanged();
+                OnPropetyChanged("Przypominajka");
+            }
+        }
+        public string BuforWyniku
+        {
+            get { return buforWyniku.ToString(); }
+            set
+            {
+                buforWyniku = Convert.ToDouble(value);
+                OnPropetyChanged();
+                OnPropetyChanged("Przypominajka");
+            }
+        }
+        public string BuforDrugiejLiczby
+        {
+            get { return buforDrugiejLiczby.ToString(); }
+            set
+            {
+                buforDrugiejLiczby = Convert.ToDouble(value);
+                OnPropetyChanged();
+                OnPropetyChanged("Przypominajka");
+            }
+        }
+        public string Przypominajka
+        {
+            get { return $"{BuforWyniku} {BuforDziałania} {BuforDrugiejLiczby}"; }
         }
 
         internal void DopiszCyfrę(string cyfra)
         {
             if (flagaWyniku)
                 Skasuj();
-            if (Wynik == "0")
-                Wynik = "";
-            Wynik += cyfra;
+            if (BuforIO == "0")
+                BuforIO = "";
+            BuforIO += cyfra;
             if (przecinek && !ułamek)
                 ułamek = true;
         }
@@ -55,89 +88,127 @@ namespace NET__ININ4_PR1._2_z1
                 if (przecinek)
                 {
                     przecinek = false;
-                    Wynik = Wynik.Substring(0, Wynik.Length - 1);
+                    BuforIO = BuforIO.Substring(0, BuforIO.Length - 1);
                 }
                 else
                 {
                     przecinek = true;
-                    Wynik += ",";
+                    BuforIO += ",";
                 }
-            if(Wynik == "-0")
+            if(BuforIO == "-0")
                 KorektaUjemnegoZera();
         }
         internal void PrzełączZnak()
         {
-            if (Wynik != "0")
+            if (BuforIO != "0")
                 if (ujemna)
                 {
-                    Wynik = Wynik.Substring(1);
+                    BuforIO = BuforIO.Substring(1);
                     ujemna = false;
                 }
                 else
                 {
-                    Wynik = "-" + Wynik;
+                    BuforIO = "-" + BuforIO;
                     ujemna = true;
                 }
         }
         private void KorektaUjemnegoZera()
         {
-            Wynik = "0";
+            BuforIO = "0";
             ujemna = false;
         }
 
 
         internal void CofnijZnak()
         {
-            if (Wynik[^1] == ',')
+            if (BuforIO[^1] == ',')
             {
                 PrzełączUłamek();
                 return;
             }
-            string w = Wynik.Substring(0, Wynik.Length - 1);
+            string w = BuforIO.Substring(0, BuforIO.Length - 1);
             if (w == "")
-                Wynik = "0";
+                BuforIO = "0";
             else if (w == "-0")
                 KorektaUjemnegoZera();
             else
-                Wynik = w;
+                BuforIO = w;
         }
         internal void Skasuj()
         {
-            Wynik = "0";
+            BuforIO = "0";
             ujemna = ułamek = przecinek = flagaWyniku = false;
         }
         internal void Resetuj()
         {
             Skasuj();
             /*buforLiczb.Clear();*/
-            buforDziałania = null;
+            BuforDziałania = null;
             buforWyniku = buforDrugiejLiczby = null;
+            OnPropetyChanged("BuforWyniku");
+            OnPropetyChanged("BuforDrugiejLiczby");
+            OnPropetyChanged("BuforDziałania");
+            OnPropetyChanged("Przypominajka");
         }
 
         internal void NoweDziałanie(string oznaczenie)
         {
             ZwykłeDziałanie();
-            buforDziałania = oznaczenie;
+            BuforDziałania = oznaczenie;
         }
         internal void ZwykłeDziałanie()
         {
             if (buforWyniku == null)
             {
-                buforWyniku = Convert.ToDouble(Wynik);
+                BuforWyniku = BuforIO;
                 flagaWyniku = true;
             }
             else
             {
                 if (flagaWyniku == false)
                 {
-                    buforDrugiejLiczby = Convert.ToDouble(Wynik);
+                    BuforDrugiejLiczby = BuforIO;
                 }
                 else if (buforDrugiejLiczby == null)
                     return;
-                buforWyniku = WykonajDziałanie();
-                Wynik = buforWyniku.ToString();
+                BuforWyniku = WykonajDziałanie().ToString();
+                BuforIO = buforWyniku.ToString();
                 flagaWyniku = true;
             }
+        }
+        internal void DziałanieProcentowe()
+        {
+            if (buforWyniku == null)
+            {
+                BuforWyniku = BuforIO;
+                flagaWyniku = true;
+            }
+            else
+            {
+                if (flagaWyniku == false)
+                {
+                    BuforDrugiejLiczby = BuforIO;
+                }
+                else if (buforDrugiejLiczby == null)
+                    return;
+                buforDrugiejLiczby = buforDrugiejLiczby * buforWyniku / 100;
+                BuforWyniku = WykonajDziałanie().ToString();
+                BuforIO = BuforWyniku;
+                flagaWyniku = true;
+            }
+        }
+        internal void DziałanieJednoargumentowe(string oznaczenie)
+        {
+            if(buforWyniku == null)
+            {
+                BuforWyniku = BuforIO;
+                flagaWyniku = true;
+            }
+            BuforDziałania = oznaczenie;
+            BuforWyniku = WykonajDziałanieJednoargumentowe().ToString();
+            BuforIO = BuforWyniku;
+            flagaWyniku = true;
+            //wyczyścić bufor drugiej liczby?
         }
 
         private double WykonajDziałanie()
@@ -146,6 +217,13 @@ namespace NET__ININ4_PR1._2_z1
                 return (double)(buforWyniku + buforDrugiejLiczby);
             else if (buforDziałania == "×")
                 return (double)(buforWyniku * buforDrugiejLiczby);
+            else
+                return double.NaN;
+        }
+        private double WykonajDziałanieJednoargumentowe()
+        {
+            if (BuforDziałania == "1/x")
+                return 1 / (double)buforWyniku;
             else
                 return double.NaN;
         }

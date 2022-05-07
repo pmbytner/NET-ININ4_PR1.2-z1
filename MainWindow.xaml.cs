@@ -58,7 +58,7 @@ namespace NET__ININ4_PR1._2_z1
             model.Resetuj();
         }
 
-        private void ZwykłeDziałanie(object sender, RoutedEventArgs e)
+        private void NoweZwykłeDziałanie(object sender, RoutedEventArgs e)
         {
             model.NoweDziałanie(
                 (string)((Button)sender).Content
@@ -68,6 +68,18 @@ namespace NET__ININ4_PR1._2_z1
         private void RównaSię(object sender, RoutedEventArgs e)
         {
             model.ZwykłeDziałanie();
+        }
+
+        private void Procent(object sender, RoutedEventArgs e)
+        {
+            model.DziałanieProcentowe();
+        }
+
+        private void DziałanieJednoargumentowe(object sender, RoutedEventArgs e)
+        {
+            model.DziałanieJednoargumentowe(
+                (string)((Button)sender).Content
+                );
         }
     }
 }
